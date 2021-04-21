@@ -16,8 +16,8 @@ let response = fetch(`http://localhost:3000/api/teddies/${id_teddie}`)
         <div class="teddie_information">
          <h2 class="teddie_name">${productTeddieSelect.name}</h2>
             <h3 class="teddie_price">${
-              Number(productTeddieSelect.price / 100) + " €"
-            }</h3>
+              (productTeddieSelect.price / 100)
+            } €</h3>
               <p class="teddie_description">${
                 productTeddieSelect.description
               }</p>
@@ -68,26 +68,25 @@ let response = fetch(`http://localhost:3000/api/teddies/${id_teddie}`)
         idSelectedProduct: id_teddie,
         productOption: selectColor,
         quantity: 1,
-        price: Number(productTeddieSelect.price / 100) + " €",
+        price: (productTeddieSelect.price / 100),
       };
       console.log(productCard);
       // --------------------------------------LE LOCAL STORAGE--------------------------------------//
       //Stocker les valeurs du formulaire dans le local storage:
       let saveProductOnLocalStorage = JSON.parse(localStorage.getItem("teddyBear")); //=>convertir au format JSON avec la clé teddyBear
 
-      //Création fenêtre de confirmation pour le produit + option sélectionné
-      function alertConfirmation(){
-        if(confirm(`Le produit ${productTeddieSelect.name} avec la couleur ${selectColor} a été ajouter au panier`))
-        {window.location.href = "panier.html";}
-        else{window.location.href = "index.html"};
-      } ;
-
-      // Fonction permettant d'ajouter un produit sélectionné dans le local storage
+        //Création fenêtre de confirmation pour le produit + option sélectionné
+        function alertConfirmation(){
+          if(confirm(`Le produit ${productTeddieSelect.name} avec la couleur ${selectColor} a été ajouter au panier`))
+          {window.location.href = "panier.html";}
+          else{window.location.href = "index.html"};
+        } 
+    
+             // Fonction permettant d'ajouter un produit sélectionné dans le local storage
       function addProductLocalStorage(){
         saveProductOnLocalStorage.push(productCard);
         localStorage.setItem("teddyBear",JSON.stringify(saveProductOnLocalStorage));
       }
-
       // Création de la condition SI il y a un produit dans le locale storage OU non
       if (saveProductOnLocalStorage) {
        addProductLocalStorage(); 
@@ -100,3 +99,7 @@ let response = fetch(`http://localhost:3000/api/teddies/${id_teddie}`)
     });
 
   });
+
+
+
+ 
