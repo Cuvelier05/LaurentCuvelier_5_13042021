@@ -26,7 +26,6 @@ let response = fetch(`http://localhost:3000/api/teddies/${id_teddie}`)
         <form >
           <label for="product_option">Choisir la couleur</label>
           <select name ="select_option "id="choose_color">
-
           </select>
         </form>
         
@@ -41,39 +40,63 @@ let response = fetch(`http://localhost:3000/api/teddies/${id_teddie}`)
 
     // Création d'une boucle pour afficher les options
     for (let i = 0; i < optionColors.length; i++) {
-      templateOption += `<option value="${i}">${optionColors[i]}</option>`;
+      templateOption += `<option value="${optionColors[i]}">${optionColors[i]}</option>`;
     }
 
     // Intégrer les options au contenu HTML
     document.querySelector("#choose_color").innerHTML = templateOption;
+ 
 
-    // --------------------------------------Gestion du panier--------------------------------------//
+   // --------------------------------------Gestion du panier--------------------------------------//
     // Recupération des données sélectionnées par l'utilisateur + envoie au panier
 
     // Sélection du bouton
-    const addBasket = document.querySelector("#add_basket");
+    const btnAddBasket = document.querySelector("#add_basket");
 
     // Ajouter un évènement au bouton
-    addBasket.addEventListener("click", (e) => {
+    btnAddBasket.addEventListener("click", (e) => {
       e.preventDefault();
-      e.stopPropagation();
-
-      //Selectiondu formulaire
-      const idForm = document.getElementById("choose_color");
-
+      //Selection du formulaire
+      const idOption = document.getElementById("choose_color");
+      
       // Récuperation choix de l'utilisateur dans une variable
-      const selectColor = idForm.value;
-
+      const selectColor = idOption.value;
+      
       // Récupération des valeurs du formulaire
-      let productOption = {
+      let productCard = {
         productName: productTeddieSelect.name,
         idSelectedProduct: id_teddie,
-        productOption: idForm,
+        productOption: selectColor,
         quantity: 1,
         price: Number(productTeddieSelect.price / 100) + " €",
       };
-      console.log(productOption);
-    });
-  });
+      console.log(productCard);
+      // --------------------------------------LE LOCAL STORAGE--------------------------------------//
+      //Stocker les valeurs du formulaire dans le local storage:
+      let saveProductOnLocalStorage = JSON.parse(localStorage.getItem("teddyBear")); //=>convertir au format JSON avec la clé teddyBear
 
-// --------------------------------------LE LOCAL STORAGE--------------------------------------//
+      //Création fenêtre de confirmation pour le produit + option sélectionné
+      function alertConfirmation(){
+        if(confirm(`Le produit ${productTeddieSelect.name} avec la couleur ${selectColor} a été ajouter au panier`))
+        {window.location.href = "panier.html";}
+        else{window.location.href = "index.html"};
+      } ;
+
+      // Fonction permettant d'ajouter un produit sélectionné dans le local storage
+      function addProductLocalStorage(){
+        saveProductOnLocalStorage.push(productCard);
+        localStorage.setItem("teddyBear",JSON.stringify(saveProductOnLocalStorage));
+      }
+
+      // Création de la condition SI il y a un produit dans le locale storage OU non
+      if (saveProductOnLocalStorage) {
+       addProductLocalStorage(); 
+       alertConfirmation() ;
+      } else {
+        saveProductOnLocalStorage = [];
+        addProductLocalStorage();
+        alertConfirmation() ;
+      }
+    });
+
+  });

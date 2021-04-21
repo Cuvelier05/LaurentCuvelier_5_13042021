@@ -1,7 +1,6 @@
 // OBJET NOUNOURS
-
+// Classe qui va servir à l'assignation des data de mon API (objet Nounours)
 class Teddies {
-  // Classe qui va servir à l'assignation des data de mon API (objet Nounours)
   constructor(jsonTeddies) {
     jsonTeddies && Object.assign(this, jsonTeddies);
   }
