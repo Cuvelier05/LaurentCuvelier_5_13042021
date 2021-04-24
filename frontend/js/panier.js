@@ -1,14 +1,12 @@
-// window.addEventListener("DOMContentLoaded", fn)
-
-// Split code into functions that have own responsabilities
-// Avoid side effects into same function
-
-//  --------------------Données des produits enregistrer dans le local storage-------------------------//
+// **************************************************VARIABLE**************************************************\\
+//  Données des produits enregistrer dans le local storage
 let saveProductOnLocalStorage = JSON.parse(localStorage.getItem("teddyBear"));
 
-// --------------------AFfichage produit du panier-------------------------//
-const showEmptyBasket = document.querySelector("#container_list_product");
-const showFullBasket = document.querySelector("#show_basket_proudct");
+// AFfichage produit du panier
+const displayEmptyBasket = document.querySelector("#container_list_product");
+const displayFullBasket = document.querySelector("#show_basket_proudct");
+
+// *****CONDITION*****
 
 // Si le panier est vide
 if (saveProductOnLocalStorage === null) {
@@ -21,48 +19,35 @@ if (saveProductOnLocalStorage === null) {
    </thead>
   </table>
   `;
-  showEmptyBasket.innerHTML = emptyBasket;
+  displayEmptyBasket.innerHTML = emptyBasket;
 }
 //Affichage des produits choisis dans un tableau
 else {
   let fullBasket = [];
-
   for (i = 0; i < saveProductOnLocalStorage.length; i++) {
     fullBasket += `
-   <tr>
-    <td class="product_basket">${saveProductOnLocalStorage[i].productName}</td>
-      <td class = "option_basket">${saveProductOnLocalStorage[i].productOption}</td>
-        <td class = "quantity_basket">${saveProductOnLocalStorage[i].quantity}</td>
-          <td class = "price_basket">${saveProductOnLocalStorage[i].price} €</td>
-            <td><button class = "delete_btn" >Supprimer</button> </td>
-   <tr>
-`;
+          <tr>
+            <td class="product_basket">${saveProductOnLocalStorage[i].name}</td>
+              <td class = "option_basket">${saveProductOnLocalStorage[i].option}</td>
+                <td class = "quantity_basket">${saveProductOnLocalStorage[i].quantity}</td>
+                  <td class = "price_basket">${saveProductOnLocalStorage[i].price} €</td>
+          <tr>
+      `;
   }
-
   if (i === saveProductOnLocalStorage.length) {
-    showFullBasket.innerHTML = fullBasket;
+    displayFullBasket.innerHTML = fullBasket;
   }
 }
 
-//  --------------------Création du bouton SUPPRIMER L ARTICLE-------------------------//
-// let deleteProduct = document.querySelectorAll(".delete_btn");
-// console.log(deleteProduct);
-
-// for(let i = 0; i <deleteProduct; i++){
-//   deleteProduct[i].addEventListener('click' , (e)=>{
-//     e.stopPropagation;
-//     e.preventDefault;
-//   })
-// }
-
 //  --------------------Création du bouton SUPPRIMER LE PANIER-------------------------//
-let deleteBasket = `   
-<tr>
-<th colspan="5"><button class = "deleteAll">Supprimer le panier</button></th>
-</tr>
-`;
 
-showFullBasket.insertAdjacentHTML("beforeend", deleteBasket);
+let deleteBasket = `   
+    <tr>
+    <td colspan="5"><button class = "deleteAll">Supprimer le panier</button></td>
+    </tr>
+  `;
+
+displayFullBasket.insertAdjacentHTML("beforeend", deleteBasket);
 
 let deleteAll = document.querySelector(".deleteAll");
 if (deleteAll) {
@@ -76,7 +61,7 @@ if (deleteAll) {
 }
 
 //  --------------------Calcul du prix total du panier-------------------------//
-let totalBasketPrice = [1, 2, 3, 4];
+let totalBasketPrice = [];
 
 if (saveProductOnLocalStorage) {
   for (i = 0; i < saveProductOnLocalStorage.length; i++) {
@@ -87,16 +72,26 @@ if (saveProductOnLocalStorage) {
 }
 
 function summarize(acc, cur) {
-  return Number.parseInt(acc) + Number.parseInt(cur);
+  return Number(acc) + Number(cur);
 }
 
-const totalPrice = totalBasketPrice.reduce(summarize, 0);
-console.log(totalPrice);
+const totalPrice = Number(totalBasketPrice.reduce(summarize, 0));
 
 let basketPrice = `   
 <tr>
-<th colspan="5">Le prix total de votre panier est de ${totalPrice} €</th>
+<td colspan="5">Le prix total de votre panier est de <span class="total_price">${totalPrice} €</span></td>
 </tr>
 `;
 
-showFullBasket.insertAdjacentHTML("beforeend", basketPrice);
+displayFullBasket.insertAdjacentHTML("beforeend", basketPrice);
+
+//  --------------------Création du bouton SUPPRIMER L ARTICLE-------------------------//
+// let deleteProduct = document.querySelectorAll(".delete_btn");
+// console.log(deleteProduct);
+
+// for(let i = 0; i <deleteProduct; i++){
+//   deleteProduct[i].addEventListener('click' , (e)=>{
+//     e.stopPropagation;
+//     e.preventDefault;
+//   })
+// }

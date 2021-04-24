@@ -1,3 +1,4 @@
+/* ****************Générale**************** */
 body {
   margin: 0;
   padding: 0;
@@ -6,66 +7,94 @@ body {
   color: white;
 }
 
-a{
+a {
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
-header{
+header {
   display: flex;
   justify-content: space-between;
   background-color: rgb(24, 32, 63);
 }
 
-.logo{
+.logo {
   width: 150px;
-  border-radius: 10px ;
+  border-radius: 10px;
   margin: 5px;
 }
-#results{
+
+/* ****************PAGE INDEX / PAGE PRODUIT**************** */
+#results {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
 }
 
-.teddie_card{
+.teddie_card {
   margin: auto;
   margin-bottom: 10px;
   list-style: none;
-  border : 1px solid white;
+  border: 1px solid white;
   border-radius: 10px;
   width: 90%;
   max-width: 330px;
   padding: 10px;
 }
 
-.teddie_button a{
-  border : 1px solid white;
-  background-color:  grey;
+.teddie_button a {
+  border: 1px solid white;
+  background-color: grey;
   padding: 2px;
   border-radius: 5px;
 }
 
-.teddie_picture{
+.teddie_picture {
   width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 10px 10px 0px 0px;
 }
 
+/* ****************PAGE PANIER**************** */
+table {
+  border: 4px solid #333;
+  width: 90%;
+  padding: 5px;
+  margin: auto;
+}
 
-/* PAGE PANIER */
-table,
 td {
-    border: 1px solid #333;
+  border: 2px solid #333;
 }
 
 thead,
 tfoot {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
 }
 
-.price_basket{
-  color : yellow;
+.price_basket,
+.total_price {
+  color: yellow;
+}
+
+#form_array {
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#form_title {
+  background-color: #333;
+}
+
+#wtf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 4px solid #333;
 }

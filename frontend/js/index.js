@@ -1,13 +1,14 @@
-// **********************APPEL DE L'API + MISE EN PAGE INDEX HTML**********************\\
-
-// Adress URL de base
+// **************************************************VARIABLE**************************************************\\
+// Adresse URL de base
 const BASE_URL = "http://localhost:3000/api";
 
-// Appel d'un évenement
+// *********************************************FONCTION CHARGEMENT*********************************************\\
+// Appel d'un évenement (affichage de la page quand le DOM sera chargé)
 window.addEventListener("DOMContentLoaded", () => {
   initApp();
 });
 
+// *********************************************FONCTIONS PRINCIPALES*********************************************\\
 // Appel de l'Api(nounours) + traitement des erreurs + appel fonction pour afficher html
 function initApp() {
   fetch(`${BASE_URL}/teddies`)
