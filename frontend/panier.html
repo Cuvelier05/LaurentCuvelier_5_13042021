@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css" />
-  <title>Orinoco - Panier</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Orinoco - Panier</title>
+  </head>
 
-<body>
-  <header>
-    <a href="index.html"
-    ><img class="logo" src="./image/logoOrinoco.png" alt="logo Orinoco"
-  /></a>
-    <nav>
+  <body>
+    <header>
+      <a href="index.html"
+        ><img class="logo" src="./image/logoOrinoco.png" alt="logo Orinoco"
+      /></a>
+      <nav>
         <a href="index.html">ACCUEIL</a>
-        <a href="#">PANIER</a>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
-  <main>
-    <h1>Page panier</h1>
-    <section>
-      <div id="container_basket_product">
-    </section>
-  </main>
-  
-  <footer></footer>
-  <!-- <script src="./js/appTest.js"></script> -->
-  <script src="./js/panier.js"></script>
-</body>
+    <main>
+      <h1>Votre commande</h1>
+
+      <section id="container_list_product">
+        <table id="" align="center">
+          <thead>
+            <tr>
+              <th colspan="4"><h2>Informations de la commande</h2></th>
+            </tr>
+            <tr>
+              <td><h3>Produit</h3></td>
+              <td><h3>Option</h3></td>
+              <td><h3>Quantité</h3></td>
+              <td><h3>Prix</h3></td>
+            </tr>
+          </thead>
+          <tbody id="show_basket_proudct"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer></footer>
+    <script src="./js/panier.js"></script>
+  </body>
 </html>
