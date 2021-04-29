@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Orinoco - Commande</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html"
+        ><img class="logo" src="./image/logoOrinoco.png" alt="logo Orinoco"
+      /></a>
+      <nav>
+        <a href="index.html">ACCUEIL</a>
+        <a href="panier.html">PANIER</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Valider votre commande</h1>
+      <section>
+        <form id="array_form">
+          <h2 id="form_title">
+            Merci de remplir ce formulaire pour valider votre commande
+          </h2>
+          <label for="first_name"> Prénom : </label>
+          <input
+            type="text"
+            name="first_name"
+            id="first_name"
+            placeholder="Bruce"
+            required
+          />
+          <small id="valid"></small>
+          <label for="last_name"> Nom : </label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            title="Saisissez votre nom"
+            placeholder="Banner"
+            required
+          />
+
+          <label for="adress"> Adresse : </label>
+          <textarea
+            name="adress"
+            id="adress"
+            title="Saisissez votre adresse"
+            placeholder="39 rue Duvert"
+            required
+          ></textarea>
+
+          <label for="city"> Ville : </label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            title="Saisissez votre ville"
+            placeholder="Greenville"
+            required
+          />
+
+          <label for="zip_code"> Code postale : </label>
+          <input
+            type="text"
+            id="zip_code"
+            name="zip_code"
+            title="Saisissez votre code postale"
+            placeholder="01000"
+            required
+          />
+
+          <label for="e_mail"> Email : </label>
+          <input
+            type="text"
+            id="e_mail"
+            name="e_mail"
+            title="Saisissez votre email"
+            placeholder="bruce.banner@marvel.com"
+            required
+          />
+          <button id="send_form" type="input" name="send_form">Valider</button>
+        </form>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="./js/formulaire.js"></script>
+  </body>
+</html>

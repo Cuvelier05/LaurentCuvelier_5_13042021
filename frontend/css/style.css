@@ -56,6 +56,11 @@ header {
   border-radius: 10px 10px 0px 0px;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* ****************PAGE PANIER**************** */
 table {
   border: 4px solid #333;
@@ -79,22 +84,17 @@ tfoot {
   color: yellow;
 }
 
-#form_array {
-  width: 50%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-#form_title {
+/* #form_title {
   background-color: #333;
-}
+} */
 
-#wtf {
+#array_form {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 4px solid #333;
+}
+
+#verif {
+  font-size: large;
 }

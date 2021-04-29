@@ -33,7 +33,7 @@ function productApp() {
 
 // Fonction pour choisir l'option du produit
 function getSelectedColor() {
-  const idOption = document.getElementById("choose_color");
+  const idOption = document.querySelector("#choose_color");
   // Récuperation choix de l'utilisateur dans une variable
   if (idOption) {
     return idOption.value;
@@ -60,28 +60,29 @@ function addProductLocalStorage(productCard) {
   //Stocker les valeurs du formulaire dans le local storage:
   // Création de la condition SI il y a un produit dans le locale storage OU non
   let saveProductOnLocalStorage =
-    JSON.parse(localStorage.getItem("teddyBear")) || []; //=>convertir au format JSON avec la clé teddyBear
+    JSON.parse(localStorage.getItem("product")) || []; //=>convertir au format JSON avec la clé teddyBear
   saveProductOnLocalStorage.push(productCard);
-  localStorage.setItem("teddyBear", JSON.stringify(saveProductOnLocalStorage));
+  localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
 }
 
 //Fonction message de confirmation selection produit + option sélectionné
 function alertConfirmation(productCard) {
-  if (
-    confirm(
-      `Le produit ${productCard.productName} avec la couleur ${productCard.productOption} a été ajouter au panier`
-    )
-  ) {
-    window.location.href = "panier.html";
-  } else {
-    window.location.href = "index.html";
+  if (productCard) {
+    try {
+      alert(
+        `Le produit ${productCard.name} avec la couleur ${productCard.option} a été ajouter au panier`
+      );
+      window.location.href = "panier.html";
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }
 
 // Fonction pour afficher le produit selectionné
 function showTeddie(teddiesData) {
   document.querySelector(".container_product").innerHTML = `
-    <li class="teddie_card">
+    <div class="teddie_card">
       <img class ="teddie_picture" src="${teddiesData.imageUrl}" />
           <div class="teddie_information">
             <h2 class="teddie_name">${teddiesData.name}</h2>
@@ -90,14 +91,17 @@ function showTeddie(teddiesData) {
           </div>      
       <form >
           <label for="product_option">Choisir la couleur</label>
-            <select name ="select_option "id="choose_color"></select>
+            <select name ="select_option" id="choose_color"></select>
+
+            <label for="product_quantity">Choisir la quantité</label>
+            <select name ="select_quantity "id="choose_quantity"></select>
       </form>
       <button id="add_basket" type= "submit">Ajouter au panier</button>      
-    </li>
+    </div>
   `;
 }
 
-// Options de chaque produit
+// Options couleurs de chaque produit
 function teddieOption(teddiesData) {
   const optionColors = teddiesData.colors;
   let optionArray = [];

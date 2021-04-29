@@ -1,6 +1,6 @@
 // **************************************************VARIABLE**************************************************\\
 //  Données des produits enregistrer dans le local storage
-let saveProductOnLocalStorage = JSON.parse(localStorage.getItem("teddyBear"));
+let saveProductOnLocalStorage = JSON.parse(localStorage.getItem("product"));
 
 // AFfichage produit du panier
 const displayEmptyBasket = document.querySelector("#container_list_product");
@@ -54,6 +54,7 @@ if (deleteAll) {
   deleteAll.addEventListener("click", (e) => {
     e.preventDefault;
     e.stopPropagation;
+    localStorage.removeItem("form");
     localStorage.removeItem("teddyBear");
     alert("Vous avez supprimer votre panier");
     window.location.href = "panier.html";
@@ -85,13 +86,21 @@ let basketPrice = `
 
 displayFullBasket.insertAdjacentHTML("beforeend", basketPrice);
 
-//  --------------------Création du bouton SUPPRIMER L ARTICLE-------------------------//
-// let deleteProduct = document.querySelectorAll(".delete_btn");
-// console.log(deleteProduct);
+//  --------------------Création du bouton VALIDER LE PANIER-------------------------//
+let confirmBasket = `   
+    <tr>
+    <td colspan="5"><button class = "confirmBtn">Valider le panier</button></td>
+    </tr>
+  `;
 
-// for(let i = 0; i <deleteProduct; i++){
-//   deleteProduct[i].addEventListener('click' , (e)=>{
-//     e.stopPropagation;
-//     e.preventDefault;
-//   })
-// }
+displayFullBasket.insertAdjacentHTML("beforeend", confirmBasket);
+
+let confirmBtn = document.querySelector(".confirmBtn");
+if (confirmBtn) {
+  confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault;
+    e.stopPropagation;
+    alert("Plus qu'une étape avant l'envoie de votre commande");
+    window.location.href = "formulaire.html";
+  });
+}
