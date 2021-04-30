@@ -1,37 +1,31 @@
 // **************************************************VARIABLE**************************************************\\
 let productLocalStorage = JSON.parse(localStorage.getItem("product"));
-let contact = JSON.parse(localStorage.getItem("contact"));
+
 const btnSendForm = document.querySelector("#send_form");
 const form = document.querySelector("#array_form");
 let products = [];
-
-const sendAll = {
-  products,
-  contact,
-};
 
 // *********************************************FONCTIONS PRINCIPALES*********************************************\\
 
 // Ecoute des évènement au clique du bouton
 btnSendForm.addEventListener("click", (e) => {
   e.preventDefault();
-
+  e.stopPropagation();
   // Récupération valeurs du formulaire dans une constante
-  const formValues = {
+  const contact = {
     firstName: document.querySelector("#first_name").value,
     lastName: document.querySelector("#last_name").value,
     address: document.querySelector("#adress").value,
     city: document.querySelector("#city").value,
     email: document.querySelector("#e_mail").value,
-    // zip_code: document.querySelector("#zip_code").value,
   };
 
   //Récupération données saisies par l'utilisateur pour les controlés
-  const firstNameUser = formValues.firstName;
-  const lastNameUser = formValues.lastName;
-  const adressUser = formValues.adress;
-  const cityUser = formValues.city;
-  const emailUser = formValues.email;
+  const firstNameUser = contact.firstName;
+  const lastNameUser = contact.lastName;
+  const adressUser = contact.adress;
+  const cityUser = contact.city;
+  const emailUser = contact.email;
   // const zipCodeUser = formValues.zip_code;
 
   //Déclaration des Regexp pour controler le formulaire
@@ -118,31 +112,36 @@ btnSendForm.addEventListener("click", (e) => {
     cityControl() &&
     adressControl() &&
     emailControl()
-    // zipCodeControl() &&
   ) {
     alert("Votre formulaire est validé.");
-    localStorage.setItem("contact", JSON.stringify(formValues));
+    localStorage.setItem("contact", JSON.stringify(contact));
     //Récupération des Id nounours pour envoi serveur
     productLocalStorage.forEach((dataId) => {
       products.push(dataId.id);
     });
+    const sendAll = {
+      products,
+      contact,
+    };
+    console.log(sendAll);
+    postfetch(sendAll);
   }
-
-  // Envoyer la commande et le formulaire au serveur
-  function postfetch() {
-    fetch("http://localhost:3000/api/teddies/order", {
-      method: "POST",
-      body: JSON.stringify(sendAll),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((data) => data.json())
-      .catch((error) => console.log(error))
-      .then((responseServer) => {
-        alert("Votre commande à bien été envoyé.");
-        window.location.href = "confirmation.html";
-        console.log(responseServer);
-      });
-  }
-
-  postfetch();
 });
+
+// Envoyer la commande et le formulaire au serveur
+function postfetch(sendAll) {
+  fetch("http://localhost:3000/api/teddies/order", {
+    method: "POST",
+    body: JSON.stringify(sendAll),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((data) => data.json())
+    .catch((error) => console.log(error))
+    .then((dataResponse) => {
+      localStorage.setItem(
+        "responseOrderId",
+        JSON.stringify(dataResponse.orderId)
+      );
+      window.location.replace("confirmation.html");
+    });
+}

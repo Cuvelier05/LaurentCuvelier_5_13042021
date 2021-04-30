@@ -4,7 +4,7 @@ let saveProductOnLocalStorage = JSON.parse(localStorage.getItem("product"));
 
 // AFfichage produit du panier
 const displayEmptyBasket = document.querySelector("#container_list_product");
-const displayFullBasket = document.querySelector("#show_basket_proudct");
+const displayFullBasket = document.querySelector("#show_basket_prouduct");
 
 // *****CONDITION*****
 
@@ -67,7 +67,6 @@ let totalBasketPrice = [];
 if (saveProductOnLocalStorage) {
   for (i = 0; i < saveProductOnLocalStorage.length; i++) {
     let totalProductPrice = saveProductOnLocalStorage[i].price;
-
     totalBasketPrice.push(totalProductPrice);
   }
 }
@@ -78,6 +77,7 @@ function summarize(acc, cur) {
 
 const totalPrice = Number(totalBasketPrice.reduce(summarize, 0));
 
+localStorage.setItem("totalPriceCommand", JSON.stringify(totalPrice));
 let basketPrice = `   
 <tr>
 <td colspan="5">Le prix total de votre panier est de <span class="total_price">${totalPrice} €</span></td>
