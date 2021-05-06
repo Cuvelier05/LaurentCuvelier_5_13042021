@@ -44,7 +44,7 @@ function getSelectedColor() {
 function addBasket(productTeddieSelect) {
   const selectColor = getSelectedColor();
   // Récupération des valeurs du formulaire
-  const productCard = {
+  let productCard = {
     name: productTeddieSelect.name,
     id: productTeddieSelect._id,
     option: selectColor,
@@ -54,15 +54,47 @@ function addBasket(productTeddieSelect) {
   addProductLocalStorage(productCard);
   alertConfirmation(productCard);
 }
+// function addProductLocalStorage(productCard) {
+//   addBasket(productTeddieSelect);
+//   let otherProduct = true;
+//   // saveProductOnLocalStorage = JSON.parse();
+//   let saveProductOnLocalStorage = [];
+//   if (localStorage.getItem("product") === null) {
+//     saveProductOnLocalStorage.push(productCard);
+//     localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
+//   } else {
+//     saveProductOnLocalStorage = JSON.parse(localStorage.getItem("product"));
+//     saveProductOnLocalStorage.forEach((product) => {
+//       if (
+//         productTeddieSelect._id === product._id &&
+//         selectColor === product.selectColor
+//       ) {
+//         product.quantity++;
+//         otherProduct = false;
+//       }
+//     });
+//     if (otherProduct) saveProductOnLocalStorage.push(productCard);
+//     localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
+//   }
+// }
 
 // Fonction permettant d'ajouter un produit sélectionné dans le local storage
 function addProductLocalStorage(productCard) {
   //Stocker les valeurs du formulaire dans le local storage:
   // Création de la condition SI il y a un produit dans le locale storage OU non
   let saveProductOnLocalStorage =
-    JSON.parse(localStorage.getItem("product")) || []; //=>convertir au format JSON avec la clé teddyBear
+    JSON.parse(localStorage.getItem("product")) || []; //=>convertir au format JSON avec la clé product
   saveProductOnLocalStorage.push(productCard);
   localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
+  let item = localStorage.getItem("product");
+  console.log(item);
+
+  // if (product[key]) {
+  //   product[key].quantity = product[key].quantity + 1;
+  // } else {
+  //   product[key] = product;
+  // }
+  // return product;
 }
 
 //Fonction message de confirmation selection produit + option sélectionné
@@ -89,20 +121,18 @@ function showTeddie(teddiesData) {
                 <h3 class="teddie_price">${teddiesData.price / 100} €</h3>
                   <p class="teddie_description">${teddiesData.description}</p>
           </div>      
-      <form >
+      <form class="option_product" >
           <label for="product_option">Choisir la couleur</label>
             <select name ="select_option" id="choose_color"></select>
-
-            <label for="product_quantity">Choisir la quantité</label>
-            <select name ="select_quantity "id="choose_quantity"></select>
       </form>
-      <button id="add_basket" type= "submit">Ajouter au panier</button>      
+      <a id="add_basket" class="teddie_button" type= "submit">Ajouter au panier</a>      
     </div>
   `;
 }
 
 // Options couleurs de chaque produit
 function teddieOption(teddiesData) {
+  const option = document.querySelector("#choose_color");
   const optionColors = teddiesData.colors;
   let optionArray = [];
   if (Array.isArray(optionColors)) {
@@ -110,8 +140,6 @@ function teddieOption(teddiesData) {
       optionArray += `<option value="${color}"> ${color} </option>`;
     });
   }
-
-  const option = document.querySelector("#choose_color");
   if (option) {
     option.innerHTML = optionArray;
   }

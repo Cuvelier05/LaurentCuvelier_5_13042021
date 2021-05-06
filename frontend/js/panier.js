@@ -11,7 +11,7 @@ const displayFullBasket = document.querySelector("#show_basket_prouduct");
 // Si le panier est vide
 if (saveProductOnLocalStorage === null) {
   let emptyBasket = `
-  <table align = center>
+  <table id="empty_title" align = center>
    <thead>
     <tr>
      <th>Le panier est vide</th>
@@ -43,7 +43,7 @@ else {
 
 let deleteBasket = `   
     <tr>
-    <td colspan="5"><button class = "deleteAll">Supprimer le panier</button></td>
+    <td colspan="5" class="padding_case"><a class = "deleteAll">Supprimer le panier</a></td>
     </tr>
   `;
 
@@ -54,8 +54,8 @@ if (deleteAll) {
   deleteAll.addEventListener("click", (e) => {
     e.preventDefault;
     e.stopPropagation;
-    localStorage.removeItem("form");
-    localStorage.removeItem("teddyBear");
+    localStorage.removeItem("product");
+    localStorage.removeItem("totalPriceCommand");
     alert("Vous avez supprimer votre panier");
     window.location.href = "panier.html";
   });
@@ -80,7 +80,7 @@ const totalPrice = Number(totalBasketPrice.reduce(summarize, 0));
 localStorage.setItem("totalPriceCommand", JSON.stringify(totalPrice));
 let basketPrice = `   
 <tr>
-<td colspan="5">Le prix total de votre panier est de <span class="total_price">${totalPrice} €</span></td>
+<td colspan="5"><p>Le prix total de votre panier est de ${totalPrice} €</span></p></td>
 </tr>
 `;
 
@@ -89,7 +89,7 @@ displayFullBasket.insertAdjacentHTML("beforeend", basketPrice);
 //  --------------------Création du bouton VALIDER LE PANIER-------------------------//
 let confirmBasket = `   
     <tr>
-    <td colspan="5"><button class = "confirmBtn">Valider le panier</button></td>
+    <td colspan="5" class="padding_case"><a class ="confirmBtn">Valider le panier</a></td>
     </tr>
   `;
 

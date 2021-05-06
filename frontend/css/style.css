@@ -1,10 +1,26 @@
-/* ****************Générale**************** */
+/* ****************GENERALE**************** */
+html {
+  min-height: 100%;
+}
 body {
+  background-color: #cf9763;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: black;
-  color: white;
+  color: #2a1828;
+  font-family: "Original Surfer", Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+h1 {
+  margin: 40px 0px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 a {
@@ -12,18 +28,64 @@ a {
   color: white;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(24, 32, 63);
+a:hover {
+  text-decoration: none;
+  color: burlywood;
 }
 
+select {
+  border-color: black;
+  border-radius: 20px;
+  background-color: rgb(228, 146, 88);
+  cursor: pointer;
+  padding: 5px;
+}
+/* ****************HEADER**************** */
+header {
+  background-color: saddlebrown;
+}
+.nav-item {
+  padding: 5px 30px;
+}
+@media screen and (min-width: 576px) {
+  header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
 .logo {
+  cursor: pointer;
   width: 150px;
   border-radius: 10px;
-  margin: 5px;
 }
 
+/* ****************FOOTER**************** */
+footer {
+  background-color: saddlebrown;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 0px;
+  margin-top: 20px;
+}
+
+.config_placement {
+  position: absolute;
+  bottom: 0;
+}
+.social {
+  margin: 10px;
+  font-size: 30px;
+}
+
+.foot_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 /* ****************PAGE INDEX / PAGE PRODUIT**************** */
 #results {
   display: flex;
@@ -33,68 +95,113 @@ header {
 
 .teddie_card {
   margin: auto;
-  margin-bottom: 10px;
+  margin-bottom: 5%;
   list-style: none;
-  border: 1px solid white;
+  border: 3px solid #2a1828;
   border-radius: 10px;
-  width: 90%;
+  width: 85%;
   max-width: 330px;
   padding: 10px;
+  background-color: #994d1c;
+  font-size: 1.3em;
 }
 
-.teddie_button a {
-  border: 1px solid white;
-  background-color: grey;
-  padding: 2px;
-  border-radius: 5px;
+.teddie_button {
+  color: black;
+  border: 2px solid #2a1828;
+  background-color: rgb(228, 146, 88);
+  padding: 7px;
+  border-radius: 20px;
 }
 
+.teddie_button:hover {
+  color: black;
+  background-color: burlywood;
+}
 .teddie_picture {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px;
 }
 
-form {
+.teddie_information {
+  color: white;
+}
+
+.option_product {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 15px;
 }
 /* ****************PAGE PANIER**************** */
 table {
-  border: 4px solid #333;
   width: 90%;
-  padding: 5px;
-  margin: auto;
+  margin-bottom: 93px;
+  font-size: 1em;
 }
 
+#empty_title {
+  font-size: 1.7em;
+  margin-bottom: 524px;
+}
+
+th,
 td {
   border: 2px solid #333;
 }
 
 thead,
 tfoot {
-  background-color: #333;
+  background-color: saddlebrown;
   color: #fff;
 }
 
-.price_basket,
-.total_price {
-  color: yellow;
+.deleteAll,
+.confirmBtn {
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 16px;
+  cursor: pointer;
+  background-color: rgb(173, 124, 89);
+}
+.deleteAll:hover {
+  color: black;
+  background-color: burlywood;
+}
+.confirmBtn:hover {
+  color: black;
+  background-color: burlywood;
+}
+.padding_case {
+  padding: 10px;
 }
 
-/* #form_title {
-  background-color: #333;
-} */
+#array_form input {
+  text-align: center;
+}
 
 #array_form {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 4px solid #333;
+  width: 75%;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 115px;
 }
 
 #verif {
   font-size: large;
+}
+/* ****************PAGE FORMULAIRE**************** */
+input {
+  margin: 5px 0px 10px 0px;
+  font-family: "Original Surfer", Arial, Helvetica, sans-serif;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: seashell;
+  border-color: black;
 }
