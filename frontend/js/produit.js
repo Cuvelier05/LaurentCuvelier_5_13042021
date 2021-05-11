@@ -31,7 +31,8 @@ function productApp() {
     });
 }
 
-// Fonction pour choisir l'option du produit
+// *********************************************SOUS - FONCTIONS*********************************************\\
+// Fonction pour choisir l'option du produit( et pouvoir la mettre dans l'objet Product et l'envoyé au localstorage)
 function getSelectedColor() {
   const idOption = document.querySelector("#choose_color");
   // Récuperation choix de l'utilisateur dans une variable
@@ -52,8 +53,8 @@ function addBasket(productTeddieSelect) {
     price: productTeddieSelect.price / 100,
   };
   addProductLocalStorage(productCard);
-  alertConfirmation(productCard);
 }
+
 // function addProductLocalStorage(productCard) {
 //   addBasket(productTeddieSelect);
 //   let otherProduct = true;
@@ -88,23 +89,13 @@ function addProductLocalStorage(productCard) {
   localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
   let item = localStorage.getItem("product");
   console.log(item);
-
-  // if (product[key]) {
-  //   product[key].quantity = product[key].quantity + 1;
-  // } else {
-  //   product[key] = product;
-  // }
-  // return product;
-}
-
-//Fonction message de confirmation selection produit + option sélectionné
-function alertConfirmation(productCard) {
+  // Confirmation selection produit + option sélectionné
   if (productCard) {
     try {
       alert(
         `Le produit ${productCard.name} avec la couleur ${productCard.option} a été ajouter au panier`
       );
-      // window.location.href = "panier.html";
+      window.location.href = "panier.html";
     } catch (error) {
       console.log(error.message);
     }
@@ -125,7 +116,7 @@ function showTeddie(teddiesData) {
           <label for="product_option">Choisir la couleur</label>
             <select name ="select_option" id="choose_color"></select>
       </form>
-      <a id="add_basket" class="teddie_button" type= "submit">Ajouter au panier</a>      
+      <a id="add_basket" class="teddie_button" type= "submit">Ajouter au panier</a>
     </div>
   `;
 }

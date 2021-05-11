@@ -28,9 +28,8 @@ else {
     fullBasket += `
           <tr>
             <td class="product_basket">${saveProductOnLocalStorage[i].name}</td>
-              <td class = "option_basket">${saveProductOnLocalStorage[i].option}</td>
-                <td class = "quantity_basket">${saveProductOnLocalStorage[i].quantity}</td>
-                  <td class = "price_basket">${saveProductOnLocalStorage[i].price} €</td>
+              <td  class="option_basket">${saveProductOnLocalStorage[i].option}</td>
+                  <td  class="price_basket">${saveProductOnLocalStorage[i].price} €</td>
           <tr>
       `;
   }
