@@ -3,7 +3,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("product"));
 
 const btnSendForm = document.querySelector("#send_form");
 const form = document.querySelector("#array_form");
-let toto = document.querySelector("#first_name");
+
 let products = [];
 
 // *********************************************FONCTIONS PRINCIPALES*********************************************\\
@@ -31,7 +31,7 @@ btnSendForm.addEventListener("click", (e) => {
   //Déclaration des Regexp pour controler le formulaire
   // Prénom , Nom , Ville
   const regexFormValues = (value) => {
-    return /^([A-Za-z]{2,20})?([-]{0,1})?([A-Za-z]{2,20})$/.test(value);
+    return /^([A-Za-z]{2,20})?([-][ ]{0,1})?([A-Za-z]{2,20})$/.test(value);
   };
   //Adresse
   const regexAdressValue = (value) => {
@@ -51,6 +51,7 @@ btnSendForm.addEventListener("click", (e) => {
       return false;
     }
   }
+
   function lastNameControl() {
     if (regexFormValues(lastNameUser)) {
       return true;
@@ -100,9 +101,8 @@ btnSendForm.addEventListener("click", (e) => {
     cityControl() &&
     emailControl()
   ) {
-    alert("Votre formulaire est validé.");
     localStorage.setItem("contact", JSON.stringify(contact));
-    //Récupération des Id nounours pour envoi serveur
+    //Récupération des Id nounours pour l'envoi au serveur
     productLocalStorage.forEach((dataId) => {
       products.push(dataId.id);
     });

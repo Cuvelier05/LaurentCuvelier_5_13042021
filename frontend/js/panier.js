@@ -106,7 +106,6 @@ function validCommandBtn() {
     confirmBtn.addEventListener("click", (e) => {
       e.preventDefault;
       e.stopPropagation;
-      alert("Plus qu'une étape avant l'envoie de votre commande");
       window.location.href = "formulaire.html";
     });
   }

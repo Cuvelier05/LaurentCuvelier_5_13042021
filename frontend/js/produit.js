@@ -68,9 +68,9 @@ function addProductLocalStorage(productCard) {
   // Confirmation selection produit + option sélectionné
   if (productCard) {
     try {
-      alert(
-        `Le produit ${productCard.name} avec la couleur ${productCard.option} a été ajouter au panier`
-      );
+      // alert(
+      //   `Le produit ${productCard.name} avec la couleur ${productCard.option} a été ajouter au panier`
+      // );
       window.location.href = "panier.html";
     } catch (error) {
       console.log(error.message);
