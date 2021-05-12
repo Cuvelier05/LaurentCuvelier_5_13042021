@@ -55,30 +55,6 @@ function addBasket(productTeddieSelect) {
   addProductLocalStorage(productCard);
 }
 
-// function addProductLocalStorage(productCard) {
-//   addBasket(productTeddieSelect);
-//   let otherProduct = true;
-//   // saveProductOnLocalStorage = JSON.parse();
-//   let saveProductOnLocalStorage = [];
-//   if (localStorage.getItem("product") === null) {
-//     saveProductOnLocalStorage.push(productCard);
-//     localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
-//   } else {
-//     saveProductOnLocalStorage = JSON.parse(localStorage.getItem("product"));
-//     saveProductOnLocalStorage.forEach((product) => {
-//       if (
-//         productTeddieSelect._id === product._id &&
-//         selectColor === product.selectColor
-//       ) {
-//         product.quantity++;
-//         otherProduct = false;
-//       }
-//     });
-//     if (otherProduct) saveProductOnLocalStorage.push(productCard);
-//     localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
-//   }
-// }
-
 // Fonction permettant d'ajouter un produit sélectionné dans le local storage
 function addProductLocalStorage(productCard) {
   //Stocker les valeurs du formulaire dans le local storage:
