@@ -44,7 +44,6 @@ function populateTeddies(teddiesData) {
                 <a href="produit.html?id=${teddie._id}" class="teddie_button"
                   <span>Afficher le produit</span>
                 </a>
-              
             </li>
           `;
     });

@@ -85,6 +85,7 @@ footer {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding: 10px 0px;
 }
 /* ****************PAGE INDEX / PAGE PRODUIT**************** */
 #results {
@@ -138,8 +139,10 @@ footer {
 /* ****************PAGE PANIER**************** */
 table {
   width: 90%;
-  margin-bottom: 93px;
+  margin: auto;
+  margin-bottom: 285px;
   font-size: 1em;
+  align-items: center;
 }
 
 #empty_title {

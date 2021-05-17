@@ -63,8 +63,8 @@ function addProductLocalStorage(productCard) {
     JSON.parse(localStorage.getItem("product")) || []; //=>convertir au format JSON avec la clé product
   saveProductOnLocalStorage.push(productCard);
   localStorage.setItem("product", JSON.stringify(saveProductOnLocalStorage));
-  let item = localStorage.getItem("product");
-  console.log(item);
+  // let item = localStorage.getItem("product");
+  // console.log(item);
   // Confirmation selection produit + option sélectionné
   if (productCard) {
     try {
