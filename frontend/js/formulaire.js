@@ -3,6 +3,7 @@ let productLocalStorage = JSON.parse(localStorage.getItem("product"));
 
 const btnSendForm = document.querySelector("#send_form");
 const form = document.querySelector("#array_form");
+
 let products = [];
 
 // *********************************************FONCTIONS PRINCIPALES*********************************************\\
@@ -23,23 +24,18 @@ btnSendForm.addEventListener("click", (e) => {
   //Récupération données saisies par l'utilisateur pour les controlés
   const firstNameUser = contact.firstName;
   const lastNameUser = contact.lastName;
-  const adressUser = contact.adress;
+  const adressUser = contact.address;
   const cityUser = contact.city;
   const emailUser = contact.email;
-  // const zipCodeUser = formValues.zip_code;
 
   //Déclaration des Regexp pour controler le formulaire
   // Prénom , Nom , Ville
   const regexFormValues = (value) => {
-    return /^([A-Za-z]{2,20})?([-]{0,1})?([A-Za-z]{2,20})$/.test(value);
+    return /^([A-Za-z]{2,20})?([-][ ]{0,1})?([A-Za-z]{2,20})$/.test(value);
   };
-  // Code Postal
-  // const regexZipCodeValue = (value) => {
-  //   return /^[0-9]{5}$/.test(value);
-  // };
   //Adresse
   const regexAdressValue = (value) => {
-    return /^([0-9a-zA-Z,\.]*)?([0-9]{5})?([a-zA-Z])$/gm.test(value);
+    return /^[0-9]{1,4}[ ,-][ A-Za-zÀ-ÿ0-9-]+$/.test(value);
   };
   //Email
   const regexEmailValue = (value) => {
@@ -69,7 +65,7 @@ btnSendForm.addEventListener("click", (e) => {
     if (regexAdressValue(adressUser)) {
       return true;
     } else {
-      alert(textAlert("ADRESSE"));
+      alert("Veuillez entrer une adresse valide");
       return false;
     }
   }
@@ -83,15 +79,6 @@ btnSendForm.addEventListener("click", (e) => {
     }
   }
 
-  function zipCodeControl() {
-    if (regexZipCodeValue(zipCodeUser)) {
-      return true;
-    } else {
-      alert("CODE POSTAL : Doit être composé de 5 chiffres.");
-      return false;
-    }
-  }
-
   function emailControl() {
     if (regexEmailValue(emailUser)) {
       return true;
@@ -100,6 +87,7 @@ btnSendForm.addEventListener("click", (e) => {
       return false;
     }
   }
+
   //Affichage alerte si prénom, nom ville sont incorrectes
   const textAlert = (value) => {
     return `${value} : Chiffres et symboles non valide\n Caractères 2 < 20`;
@@ -109,13 +97,12 @@ btnSendForm.addEventListener("click", (e) => {
   if (
     firstNameControl() &&
     lastNameControl() &&
-    cityControl() &&
     adressControl() &&
+    cityControl() &&
     emailControl()
   ) {
-    alert("Votre formulaire est validé.");
     localStorage.setItem("contact", JSON.stringify(contact));
-    //Récupération des Id nounours pour envoi serveur
+    //Récupération des Id nounours pour l'envoi au serveur
     productLocalStorage.forEach((dataId) => {
       products.push(dataId.id);
     });

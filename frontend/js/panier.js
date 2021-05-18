@@ -6,12 +6,14 @@ let saveProductOnLocalStorage = JSON.parse(localStorage.getItem("product"));
 const displayEmptyBasket = document.querySelector("#container_list_product");
 const displayFullBasket = document.querySelector("#show_basket_prouduct");
 
+// **************************************************FONCTIONS PRINCIPALES**************************************************\\
+//  --------------------Création / Affichage de la commande-------------------------//
 // *****CONDITION*****
-
 // Si le panier est vide
-if (saveProductOnLocalStorage === null) {
-  let emptyBasket = `
-  <table align = center>
+function showCommand() {
+  if (saveProductOnLocalStorage === null) {
+    let emptyBasket = `
+  <table id="empty_title" align = center>
    <thead>
     <tr>
      <th>Le panier est vide</th>
@@ -19,88 +21,93 @@ if (saveProductOnLocalStorage === null) {
    </thead>
   </table>
   `;
-  displayEmptyBasket.innerHTML = emptyBasket;
-}
-//Affichage des produits choisis dans un tableau
-else {
-  let fullBasket = [];
-  for (i = 0; i < saveProductOnLocalStorage.length; i++) {
-    fullBasket += `
+    displayEmptyBasket.innerHTML = emptyBasket;
+  } else {
+    //Affichage des produits choisis dans un tableau
+    let fullBasket = [];
+    for (i = 0; i < saveProductOnLocalStorage.length; i++) {
+      fullBasket += `
           <tr>
             <td class="product_basket">${saveProductOnLocalStorage[i].name}</td>
-              <td class = "option_basket">${saveProductOnLocalStorage[i].option}</td>
-                <td class = "quantity_basket">${saveProductOnLocalStorage[i].quantity}</td>
-                  <td class = "price_basket">${saveProductOnLocalStorage[i].price} €</td>
+              <td  class="option_basket">${saveProductOnLocalStorage[i].option}</td>
+                  <td  class="price_basket">${saveProductOnLocalStorage[i].price} €</td>
           <tr>
       `;
-  }
-  if (i === saveProductOnLocalStorage.length) {
-    displayFullBasket.innerHTML = fullBasket;
+    }
+    if (i === saveProductOnLocalStorage.length) {
+      displayFullBasket.innerHTML = fullBasket;
+    }
   }
 }
-
+showCommand();
 //  --------------------Création du bouton SUPPRIMER LE PANIER-------------------------//
 
-let deleteBasket = `   
+function deleteCommandBtn() {
+  let deleteBasket = `   
     <tr>
-    <td colspan="5"><button class = "deleteAll">Supprimer le panier</button></td>
+    <td colspan="5" class="padding_case"><a class = "deleteAll">Supprimer le panier</a></td>
     </tr>
   `;
 
-displayFullBasket.insertAdjacentHTML("beforeend", deleteBasket);
+  displayFullBasket.insertAdjacentHTML("beforeend", deleteBasket);
 
-let deleteAll = document.querySelector(".deleteAll");
-if (deleteAll) {
-  deleteAll.addEventListener("click", (e) => {
-    e.preventDefault;
-    e.stopPropagation;
-    localStorage.removeItem("form");
-    localStorage.removeItem("teddyBear");
-    alert("Vous avez supprimer votre panier");
-    window.location.href = "panier.html";
-  });
-}
-
-//  --------------------Calcul du prix total du panier-------------------------//
-let totalBasketPrice = [];
-
-if (saveProductOnLocalStorage) {
-  for (i = 0; i < saveProductOnLocalStorage.length; i++) {
-    let totalProductPrice = saveProductOnLocalStorage[i].price;
-    totalBasketPrice.push(totalProductPrice);
+  let deleteAll = document.querySelector(".deleteAll");
+  if (deleteAll) {
+    deleteAll.addEventListener("click", (e) => {
+      e.preventDefault;
+      e.stopPropagation;
+      localStorage.removeItem("product");
+      localStorage.removeItem("totalPriceCommand");
+      alert("Vous avez supprimer votre panier");
+      window.location.href = "index.html";
+    });
   }
 }
+deleteCommandBtn();
+//  --------------------Calcul du prix total du panier-------------------------//
+function totalPriceCommand() {
+  let totalBasketPrice = [];
 
-function summarize(acc, cur) {
-  return Number(acc) + Number(cur);
-}
+  if (saveProductOnLocalStorage) {
+    for (i = 0; i < saveProductOnLocalStorage.length; i++) {
+      let totalProductPrice = saveProductOnLocalStorage[i].price;
+      totalBasketPrice.push(totalProductPrice);
+    }
+  }
 
-const totalPrice = Number(totalBasketPrice.reduce(summarize, 0));
+  function summarize(acc, cur) {
+    return Number(acc) + Number(cur);
+  }
 
-localStorage.setItem("totalPriceCommand", JSON.stringify(totalPrice));
-let basketPrice = `   
+  const totalPrice = Number(totalBasketPrice.reduce(summarize, 0));
+
+  localStorage.setItem("totalPriceCommand", JSON.stringify(totalPrice));
+  let basketPrice = `   
 <tr>
-<td colspan="5">Le prix total de votre panier est de <span class="total_price">${totalPrice} €</span></td>
+<td colspan="5"><p>Le prix total de votre panier est de ${totalPrice} €</span></p></td>
 </tr>
 `;
 
-displayFullBasket.insertAdjacentHTML("beforeend", basketPrice);
-
+  displayFullBasket.insertAdjacentHTML("beforeend", basketPrice);
+}
+totalPriceCommand();
 //  --------------------Création du bouton VALIDER LE PANIER-------------------------//
-let confirmBasket = `   
+function validCommandBtn() {
+  let confirmBasket = `   
     <tr>
-    <td colspan="5"><button class = "confirmBtn">Valider le panier</button></td>
+    <td colspan="5" class="padding_case"><a class ="confirmBtn">Valider le panier</a></td>
     </tr>
   `;
 
-displayFullBasket.insertAdjacentHTML("beforeend", confirmBasket);
+  displayFullBasket.insertAdjacentHTML("beforeend", confirmBasket);
 
-let confirmBtn = document.querySelector(".confirmBtn");
-if (confirmBtn) {
-  confirmBtn.addEventListener("click", (e) => {
-    e.preventDefault;
-    e.stopPropagation;
-    alert("Plus qu'une étape avant l'envoie de votre commande");
-    window.location.href = "formulaire.html";
-  });
+  let confirmBtn = document.querySelector(".confirmBtn");
+  if (confirmBtn) {
+    confirmBtn.addEventListener("click", (e) => {
+      e.preventDefault;
+      e.stopPropagation;
+      window.location.href = "formulaire.html";
+    });
+  }
 }
+validCommandBtn();

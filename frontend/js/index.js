@@ -30,7 +30,9 @@ function populateTeddies(teddiesData) {
         // Intégration texte HTML
         `
             <li class="teddie_card">
-              <img class ="teddie_picture" src="${teddie.imageUrl}" />
+              <img class ="teddie_picture" src="${
+                teddie.imageUrl
+              }" alt="photo de nounours"/>
               <div class="teddie_information">
                 <h2 class="teddie_name">${teddie.name}</h2>
                   <h3 class="teddie_price">${
@@ -38,11 +40,10 @@ function populateTeddies(teddiesData) {
                   }</h3>
                   <p class="teddie_description">${teddie.description}</p>
               </div>
-              <div class="teddie_button">
-                <a href="produit.html?id=${teddie._id}"
+              
+                <a href="produit.html?id=${teddie._id}" class="teddie_button"
                   <span>Afficher le produit</span>
                 </a>
-              </div>
             </li>
           `;
     });
