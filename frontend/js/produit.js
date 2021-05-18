@@ -71,7 +71,7 @@ function addProductLocalStorage(productCard) {
       // alert(
       //   `Le produit ${productCard.name} avec la couleur ${productCard.option} a été ajouter au panier`
       // );
-      window.location.href = "panier.html";
+      window.location.href = "../html/panier.html";
     } catch (error) {
       console.log(error.message);
     }

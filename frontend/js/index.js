@@ -41,7 +41,9 @@ function populateTeddies(teddiesData) {
                   <p class="teddie_description">${teddie.description}</p>
               </div>
               
-                <a href="produit.html?id=${teddie._id}" class="teddie_button"
+                <a href="./html/produit.html?id=${
+                  teddie._id
+                }" class="teddie_button"
                   <span>Afficher le produit</span>
                 </a>
             </li>
