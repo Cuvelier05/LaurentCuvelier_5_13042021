@@ -31,7 +31,8 @@ btnSendForm.addEventListener("click", (e) => {
   //Déclaration des Regexp pour controler le formulaire
   // Prénom , Nom , Ville
   const regexFormValues = (value) => {
-    return /^([A-Za-z]{2,20})?([-][ ]{0,1})?([A-Za-z]{2,20})$/.test(value);
+    // return /^([A-Za-z]{2,20})?([-][ ]{0,1})?([A-Za-z]{2,20})$/.test(value);
+    return /^[A-Za-z0-9\s-,'ÀÂÄÇÈÉÊËÎÏÔÖÙÛÜàâäçéèêëîïôöùûü]{0,50}$/.test(value);
   };
   //Adresse
   const regexAdressValue = (value) => {

@@ -58,7 +58,7 @@ function deleteCommandBtn() {
       e.stopPropagation;
       localStorage.removeItem("product");
       localStorage.removeItem("totalPriceCommand");
-      alert("Vous avez supprimer votre panier");
+      alert("Vous avez supprimé votre panier");
       window.location.href = "../index.html";
     });
   }
